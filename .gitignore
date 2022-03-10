@@ -1,0 +1,16 @@
+# Vagrant Folders
+**/.vagrant/*
+*.box
+
+# packer config
+**/packer_cache/*
+packer/iso/*.iso
+packer/virtualbox/*
+packer/output/*
+packer/output*/*
+
+# VagrantCloud upload info
+**/variables*
+
+# git
+.gitconfig
