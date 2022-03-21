@@ -8,6 +8,7 @@ packer/iso/*.iso
 packer/virtualbox/*
 packer/output/*
 packer/output*/*
+**/output*/*
 
 # VagrantCloud upload info
 **/variables*
