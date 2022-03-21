@@ -11,6 +11,9 @@ vagrant init turknet-devops/[box name here]
 vagrant up
 ```
 
+Vagrant Plugin List:
+<https://vagrant-lists.github.io>
+
 ## Usage
 
 ### Packer
@@ -24,6 +27,13 @@ Build Command:
 ```bash
 packer build ./packer.parallels.json
 ```
+
+Packer Plugin Install:
+
+<https://www.packer.io/docs/commands/plugins/install>
+
+<https://www.packer.io/docs/plugins#create-a-required_plugins-block>
+
 
 ## Testing built boxes
 
@@ -45,7 +55,6 @@ Test that the box works correctly, then tear it down with:
   shasum -a 256 ubuntu-20.04-arm64.parallels.box
 ```
 
-
 ## Requirements
 
 The following software must be installed/present on your local machine before you can use Packer to build any of these Vagrant boxes:
@@ -61,5 +70,3 @@ The following software must be installed/present on your local machine before yo
 
 - [geerlingguy](https://github.com/geerlingguy/packer-boxes)
 - [Chef/Bento](https://github.com/chef/bento)
-
-
