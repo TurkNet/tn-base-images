@@ -66,12 +66,17 @@
     }
   ],
   "post-processors": [
-    [
       {
         "type": "vagrant",
         "compression_level": "9",
         "output": "./output/{{ user `packagename` }}.box"
+      },
+      {
+        "type": "vagrant-cloud",
+        "box_tag": "turknet-devops/ubuntu-20.04",
+        "vagrant_cloud_url": "https://vagrantcloud.com/api/v1",
+        "access_token": "{{user `cloud_token`}}",
+        "version": "{{user `version`}}"
       }
-    ]
   ]
 }
