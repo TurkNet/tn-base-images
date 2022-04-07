@@ -62,6 +62,7 @@
       "type": "shell",
       "scripts": [
         "../../../scripts/init.sh",
+        "../../../scripts/motd.sh",
         "../../../scripts/vagrant.sh",
         "../../../scripts/virtualbox.sh",
         "../../../scripts/cleanup.sh"
