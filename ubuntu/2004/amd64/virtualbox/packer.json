@@ -3,8 +3,8 @@
   "variables": {
     "packagename": "ubuntu-20.04-amd64.virtualbox",
     "hostname": "ubuntu-2004",
-    "cpu_number": "4",
-    "memory_size": "6144",
+    "cpu_number": "2",
+    "memory_size": "4096",
     "preseed": "preseed.cfg",
     "ssh_fullname": "vagrant",
     "ssh_password": "vagrant",

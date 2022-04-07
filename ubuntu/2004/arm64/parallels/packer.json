@@ -3,7 +3,7 @@
   "variables": {
     "packagename": "ubuntu-20.04-arm64.parallels",
     "hostname": "ubuntu-2004",
-    "cpu_number": "4",
+    "cpu_number": "2",
     "memory_size": "4096",
     "preseed": "preseed.cfg",
     "ssh_fullname": "vagrant",
