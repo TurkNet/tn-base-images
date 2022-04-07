@@ -57,6 +57,7 @@
       "type": "shell",
       "scripts": [
         "../../../scripts/init.sh",
+        "../../../scripts/motd.sh",
         "../../../scripts/vagrant.sh",
         "../../../scripts/parallels.sh",
         "../../../scripts/cleanup.sh"
