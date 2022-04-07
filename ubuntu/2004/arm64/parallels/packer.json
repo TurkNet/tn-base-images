@@ -23,7 +23,7 @@
       "parallels_tools_flavor": "lin-arm",
       "prlctl_version_file": ".prlctl_version",
       "vm_name": "{{ user `packagename` }}",
-      "disk_size": 20000,
+      "disk_size": 30000,
       "iso_checksum": "{{user `iso_checksum_type`}}:{{user `iso_checksum`}}",
       "iso_urls": [
         "{{user `iso_path`}}/{{user `iso_name`}}",
