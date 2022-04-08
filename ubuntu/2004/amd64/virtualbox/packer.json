@@ -22,7 +22,7 @@
       "guest_os_type": "ubuntu-64",
       "virtualbox_version_file": ".vbox_version",
       "vm_name": "{{ user `packagename` }}",
-      "disk_size": 30000,
+      "disk_size": 60000,
       "iso_checksum": "{{user `iso_checksum_type`}}:{{user `iso_checksum`}}",
       "iso_urls": [
         "{{user `iso_path`}}/{{user `iso_name`}}",
