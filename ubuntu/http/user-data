@@ -19,5 +19,4 @@ autoinstall:
     - net-tools
     - git
     - vim
-    - linux-image-5.13.0-25-generic
-
+    - linux-image-generic
