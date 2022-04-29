@@ -1,0 +1,82 @@
+{
+  "_comment": "Build with `packer build packer.parallels.json`",
+  "variables": {
+    "packagename": "ubuntu-22.04-arm64.parallels",
+    "hostname": "ubuntu-2204",
+    "cpu_number": "2",
+    "memory_size": "4096",
+    "preseed": "preseed.cfg",
+    "ssh_fullname": "vagrant",
+    "ssh_password": "vagrant",
+    "ssh_username": "vagrant",
+    "iso_checksum": "c209ab013280d3cd26a344def60b7b19fbb427de904ea285057d94ca6ac82dd5",
+    "iso_checksum_type": "sha256",
+    "iso_name": "ubuntu-22.04-live-server-arm64.iso",
+    "iso_path": "../iso",
+    "iso_url": "https://cdimage.ubuntu.com/ubuntu-server/daily-live/current/jammy-live-server-arm64.iso"
+  },
+  "builders": [
+    {
+      "type": "parallels-iso",
+      "name": "ubuntu-2204",
+      "guest_os_type": "ubuntu",
+      "parallels_tools_flavor": "lin-arm",
+      "prlctl_version_file": ".prlctl_version",
+      "vm_name": "{{ user `packagename` }}",
+      "disk_size": 60000,
+      "iso_checksum": "{{user `iso_checksum_type`}}:{{user `iso_checksum`}}",
+      "iso_urls": [
+        "{{user `iso_path`}}/{{user `iso_name`}}",
+        "{{user `iso_url`}}"
+      ],
+      "ssh_handshake_attempts": "3",
+      "ssh_timeout": "20m",
+      "shutdown_command": "echo '{{user `ssh_password`}}'|sudo -S shutdown -P now",
+      "ssh_password": "{{user `ssh_password`}}",
+      "ssh_username": "{{user `ssh_username`}}",
+      "ssh_port": 22,
+      "communicator": "ssh",
+      "http_directory": "../../../http",
+      "cpus": "{{user `cpu_number`}}",
+      "memory": "{{user `memory_size`}}",
+      "boot_wait": "10s",
+      "boot_command": [
+        "c<wait>",
+        "linux /casper/vmlinuz --- autoinstall ds=\"nocloud-net;seedfrom=http://{{.HTTPIP}}:{{.HTTPPort}}/\"",
+        "<enter><wait>",
+        "initrd /casper/initrd",
+        "<enter><wait>",
+        "boot",
+        "<enter>"
+      ]
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "scripts": [
+        "../../../scripts/init.sh",
+        "../../../scripts/motd.sh",
+        "../../../scripts/vagrant.sh",
+        "../../../scripts/parallels.sh",
+        "../../../scripts/cleanup.sh"
+      ],
+      "expect_disconnect": true,
+      "execute_command": "echo '{{user `ssh_password`}}' | {{.Vars}} sudo -S -E bash -eux '{{.Path}}'"
+    }
+  ],
+  "post-processors": [
+      {
+        "type": "vagrant",
+        "compression_level": "9",
+        "output": "./output/{{ user `packagename` }}.box"
+      },
+      {
+        "type": "vagrant-cloud",
+        "box_tag": "turknet-devops/ubuntu-22.04",
+        "vagrant_cloud_url": "https://vagrantcloud.com/api/v1",
+        "access_token": "{{user `cloud_token`}}",
+        "version": "{{user `version`}}"
+      }
+  ]
+}

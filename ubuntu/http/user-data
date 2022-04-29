@@ -15,7 +15,6 @@ autoinstall:
     - wget
     - tar
     - bzip2
-    - jq
     - net-tools
     - git
     - vim
