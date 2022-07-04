@@ -15,3 +15,5 @@ packer/output*/*
 
 # git
 .gitconfig
+
+output
