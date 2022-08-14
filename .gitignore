@@ -17,3 +17,5 @@ packer/output*/*
 .gitconfig
 
 output
+
+.DS_Store
