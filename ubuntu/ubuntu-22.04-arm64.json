@@ -1,5 +1,4 @@
 {
-  "_comment": "Build with `packer build packer.parallels.json`",
   "variables": {
     "packagename": "ubuntu-22.04-arm64.parallels",
     "hostname": "ubuntu-2204",

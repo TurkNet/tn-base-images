@@ -1,5 +1,4 @@
 {
-  "_comment": "Build with `packer build packer.parallels.json`",
   "variables": {
     "packagename": "ubuntu-20.04-arm64.parallels",
     "hostname": "ubuntu-2004",
@@ -57,16 +56,33 @@
   "provisioners": [
     {
       "type": "shell",
-      "scripts": [
-        "./scripts/init.sh",
-        "./scripts/motd.sh",
-        "./scripts/vagrant.sh",
-        "./scripts/parallels.sh",
-        "./scripts/cleanup.sh",
-        "./scripts/minimize.sh"
-      ],
-      "expect_disconnect": true,
-      "execute_command": "echo '{{user `ssh_password`}}' | {{.Vars}} sudo -S -E bash -eux '{{.Path}}'"
+      "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
+      "script": "scripts/ansible.sh"
+    },
+    {
+      "type": "shell",
+      "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
+      "script": "scripts/setup.sh"
+    },
+    {
+      "type": "shell",
+      "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
+      "script": "scripts/motd.sh"
+    },
+    {
+      "type": "shell",
+      "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
+      "script": "scripts/parallels.sh"
+    },
+    {
+      "type": "ansible-local",
+      "playbook_file": "../shared/main.yml",
+      "galaxy_file": "../shared/requirements.yml"
+    },
+    {
+      "type": "shell",
+      "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
+      "script": "scripts/cleanup.sh"
     }
   ],
   "post-processors": [

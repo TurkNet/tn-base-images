@@ -1,5 +1,4 @@
 {
-  "_comment": "Build with `packer build packer.virtualbox.json`",
   "variables": {
     "packagename": "ubuntu-20.04-amd64.virtualbox",
     "hostname": "ubuntu-2004",
@@ -9,11 +8,11 @@
     "ssh_fullname": "vagrant",
     "ssh_password": "vagrant",
     "ssh_username": "vagrant",
-    "iso_checksum": "f8e3086f3cea0fb3fefb29937ab5ed9d19e767079633960ccb50e76153effc98",
+    "iso_checksum": "28ccdb56450e643bad03bb7bcf7507ce3d8d90e8bf09e38f6bd9ac298a98eaad",
     "iso_checksum_type": "sha256",
     "iso_name": "ubuntu-20.04.3-live-server-amd64.iso",
     "iso_path": "../iso",
-    "iso_url": "https://old-releases.ubuntu.com/releases/20.04.1/ubuntu-20.04.3-live-server-amd64.iso",
+    "iso_url": "https://releases.ubuntu.com/20.04/ubuntu-20.04.4-live-server-amd64.iso",
     "build_directory": "../output"
   },
   "builders": [
@@ -36,7 +35,7 @@
       "ssh_username": "{{user `ssh_username`}}",
       "ssh_port": 22,
       "communicator": "ssh",
-      "http_directory": "../../../http",
+      "http_directory": "./http",
       "cpus": "{{user `cpu_number`}}",
       "memory": "{{user `memory_size`}}",
       "boot_wait": "5s",
@@ -61,16 +60,33 @@
   "provisioners": [
     {
       "type": "shell",
-      "scripts": [
-        "./scripts/init.sh",
-        "./scripts/motd.sh",
-        "./scripts/vagrant.sh",
-        "./scripts/parallels.sh",
-        "./scripts/cleanup.sh",
-        "./scripts/minimize.sh"
-      ],
-      "expect_disconnect": true,
-      "execute_command": "echo '{{user `ssh_password`}}' | {{.Vars}} sudo -S -E bash '{{.Path}}'"
+      "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
+      "script": "scripts/ansible.sh"
+    },
+    {
+      "type": "shell",
+      "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
+      "script": "scripts/setup.sh"
+    },
+    {
+      "type": "shell",
+      "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
+      "script": "scripts/motd.sh"
+    },
+    {
+      "type": "shell",
+      "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
+      "script": "scripts/parallels.sh"
+    },
+    {
+      "type": "ansible-local",
+      "playbook_file": "../shared/main.yml",
+      "galaxy_file": "../shared/requirements.yml"
+    },
+    {
+      "type": "shell",
+      "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
+      "script": "scripts/cleanup.sh"
     }
   ],
   "post-processors": [

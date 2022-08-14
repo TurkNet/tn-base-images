@@ -1,15 +1,14 @@
 #!/bin/sh -eux
 
-motd='
-████████╗██╗   ██╗██████╗ ██╗  ██╗███╗   ██╗███████╗████████╗
-╚══██╔══╝██║   ██║██╔══██╗██║ ██╔╝████╗  ██║██╔════╝╚══██╔══╝
-   ██║   ██║   ██║██████╔╝█████╔╝ ██╔██╗ ██║█████╗     ██║
-   ██║   ██║   ██║██╔══██╗██╔═██╗ ██║╚██╗██║██╔══╝     ██║
-   ██║   ╚██████╔╝██║  ██║██║  ██╗██║ ╚████║███████╗   ██║
-   ╚═╝    ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝   ╚═╝
+motd="
+ _____           _    _   _      _   
+|_   _|   _ _ __| | _| \ | | ___| |_ 
+  | || | | | '__| |/ /  \| |/ _ \ __|
+  | || |_| | |  |   <| |\  |  __/ |_ 
+  |_| \__,_|_|  |_|\_\_| \_|\___|\__|
 
-This system is built by the TurkNetDevOps
-More information can be found at https://github.com/orgs/TurkNet/teams/devops'
+This system is built by the TurkNet
+More information can be found at https://github.com/orgs/TurkNet/"
 
 if [ -d /etc/update-motd.d ]; then
     MOTD_CONFIG='/etc/update-motd.d/99-turknetdevops'

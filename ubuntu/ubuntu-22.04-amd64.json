@@ -1,5 +1,4 @@
 {
-  "_comment": "Build with `packer build packer.virtualbox.json`",
   "variables": {
     "packagename": "ubuntu-22.04-amd64.virtualbox",
     "hostname": "ubuntu-2204",
