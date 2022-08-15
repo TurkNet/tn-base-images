@@ -10,7 +10,7 @@
     "ssh_username": "vagrant",
     "iso_checksum": "28ccdb56450e643bad03bb7bcf7507ce3d8d90e8bf09e38f6bd9ac298a98eaad",
     "iso_checksum_type": "sha256",
-    "iso_name": "ubuntu-20.04.3-live-server-amd64.iso",
+    "iso_name": "ubuntu-20.04.4-live-server-amd64.iso",
     "iso_path": "../iso",
     "iso_url": "https://releases.ubuntu.com/20.04/ubuntu-20.04.4-live-server-amd64.iso",
     "build_directory": "../output"
@@ -21,6 +21,7 @@
       "name": "ubuntu-2004",
       "guest_os_type": "ubuntu-64",
       "virtualbox_version_file": ".vbox_version",
+      "output_directory": "{{ user `build_directory` }}/packer-{{user `template`}}-virtualbox",
       "vm_name": "{{ user `packagename` }}",
       "disk_size": 60000,
       "iso_checksum": "{{user `iso_checksum_type`}}:{{user `iso_checksum`}}",
@@ -38,7 +39,7 @@
       "http_directory": "./http",
       "cpus": "{{user `cpu_number`}}",
       "memory": "{{user `memory_size`}}",
-      "boot_wait": "5s",
+      "boot_wait": "10s",
       "boot_command": [
         " <wait>",
         " <wait>",
