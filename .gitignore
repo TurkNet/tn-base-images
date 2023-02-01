@@ -9,6 +9,7 @@ packer/virtualbox/*
 packer/output/*
 packer/output*/*
 **/output*/*
+**/*.iso
 
 # VagrantCloud upload info
 **/variables*
@@ -16,6 +17,6 @@ packer/output*/*
 # git
 .gitconfig
 
-output
-
 .DS_Store
+
+.dccache
