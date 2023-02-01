@@ -55,6 +55,13 @@ Test that the box works correctly, then tear it down with:
   shasum -a 256 ubuntu-20.04-arm64.parallels.box
 ```
 
+### Error
+1. "Build 'ubuntu-2004' errored after 41 milliseconds 278 microseconds: Failed creating Parallels driver: Parallels Virtualization SDK is not installed"
+
+```bash
+sudo ln -s /Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/prlsdkapi.pth /Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/site-packages/prlsdkapi.pth
+```
+
 ## Requirements
 
 The following software must be installed/present on your local machine before you can use Packer to build any of these Vagrant boxes:
